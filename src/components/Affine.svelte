@@ -97,13 +97,13 @@
         </div>
         <div class="col-md-6 mb-3">
             <h5 class="text-center">Plain Text</h5>
-            <h6 class="text-center">C = P*m + b (mod 26)</h6>
+            <h6 class="text-center">C = ( P*m + b )(mod 26)</h6>
             <textarea name="" id="" cols="30" rows="3" class="form-control" bind:value={encrypt}></textarea>
         </div>
         <div class="col-md-6 mb-3">
             <h5 class="text-center">Cipher</h5>
             <h6 class="text-center">Hasil Enkripsi</h6>
-            <textarea disabled name="" id="" cols="30" rows="3" class="form-control" bind:value={cipher}></textarea>
+            <textarea readonly name="" id="" cols="30" rows="3" class="form-control" bind:value={cipher}></textarea>
         </div>
     </div>
     <div class="row">
@@ -119,15 +119,15 @@
         <div class="col-md-6 mb-3">
             <h5 class="text-center">Plain Text</h5>
             <h6 class="text-center">Hasil Dekripsi</h6>
-            <textarea disabled name="" id="" cols="30" rows="3" class="form-control" bind:value={plain}></textarea>
+            <textarea readonly name="" id="" cols="30" rows="3" class="form-control" bind:value={plain}></textarea>
         </div>
     </div>
 </div>
 
 <style>
-    .algoDetail{
+    /* .algoDetail{
         box-shadow: 0 5px 10px -5px rgba(0,0,0,.1);
         background: #fff;
         padding:20px;
-    }
+    } */
 </style>

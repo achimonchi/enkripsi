@@ -2,12 +2,14 @@
     import Card from './../shared/Card.svelte';
     import Affine from './Affine.svelte';
     import Hill from './Hill.svelte';
+    import Vigenere from './Vigenere.svelte';
     
     const algorithms = [
         {name : "Affine Cipher", url : "affine-cipher", component:Affine},
+        {name : "Vigenere Cipher", url : "vigenere-cipher", component:Vigenere},
         {name : "Hill Cipher", url : "hill-cipher", component:Hill},
     ];
-    let algoActive = {name : "Affine Cipher", url : "affine-cipher", component:Affine}
+    let algoActive = {name : "Vigenere Cipher", url : "vigenere-cipher", component:Vigenere}
     
     const algoChange=(e)=>{
         algoActive = e.detail
