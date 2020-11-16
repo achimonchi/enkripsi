@@ -4,7 +4,8 @@ html, body {
 	height: 100%;
 	font-family: 'Montserrat' !important;
 	background-color: #fafafa !important;
-}
+	color : #222831 !important;
+} 
 
 .algoDetail{
 	box-shadow: 0 5px 10px -5px rgba(0,0,0,.1);
