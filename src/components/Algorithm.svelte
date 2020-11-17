@@ -10,8 +10,8 @@ import Caesar from './Algorithm/Caesar.svelte';
         {name : "Caesar Cipher", url : "caesar-cipher", component:Caesar},
         // {name : "Hill Cipher", url : "hill-cipher", component:Hill},
     ];
-    // let algoActive = {}
-    let algoActive = {name : "Caesar Cipher", url : "caesar-cipher", component:Caesar};
+    let algoActive = {}
+    // let algoActive = {name : "Caesar Cipher", url : "caesar-cipher", component:Caesar};
     
     const algoChange=(e)=>{
         algoActive = e.detail
