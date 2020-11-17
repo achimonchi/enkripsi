@@ -1,7 +1,4 @@
 <script>
-import { text } from "svelte/internal";
-
-
     export let algoActive={};
 
     let 
@@ -89,7 +86,7 @@ import { text } from "svelte/internal";
             <h6>Your Key : {key}</h6>
         </div>
     </div>
-    <div class="row mb-3 mt-3">
+    <div class="row mb-5 mt-3">
         <div class="col-md-12">
             <h3 class="text-center">Proses Enkripsi</h3>
             <hr>

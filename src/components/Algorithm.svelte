@@ -1,14 +1,17 @@
 <script>
     import Card from './../shared/Card.svelte';
-    import Affine from './Affine.svelte';
-    import Vigenere from './Vigenere.svelte';
+    import Affine from './Algorithm/Affine.svelte';
+import Caesar from './Algorithm/Caesar.svelte';
+    import Vigenere from './Algorithm/Vigenere.svelte';
     
     const algorithms = [
         {name : "Affine Cipher", url : "affine-cipher", component:Affine},
         {name : "Vigenere Cipher", url : "vigenere-cipher", component:Vigenere},
+        {name : "Caesar Cipher", url : "caesar-cipher", component:Caesar},
         // {name : "Hill Cipher", url : "hill-cipher", component:Hill},
     ];
-    let algoActive = {}
+    // let algoActive = {}
+    let algoActive = {name : "Caesar Cipher", url : "caesar-cipher", component:Caesar};
     
     const algoChange=(e)=>{
         algoActive = e.detail
