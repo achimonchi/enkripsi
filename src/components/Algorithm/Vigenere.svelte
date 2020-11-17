@@ -8,18 +8,13 @@
         decrypt = "",
         plain = "";
 
+    import {upperCase, mod} from './../../helper/helper'
+
     $: key = upperCase(key+"")
     $: cipher = encryption(encrypt, key+"")
     $: plain = decryption(decrypt, key+"")
     $: encrypt = upperCase(encrypt+"")
-    
-    function upperCase(text){
-        return text.toUpperCase();
-    }
-
-    function mod(number){
-        return (number % 26 + 26) % 26
-    }
+    $: decrypt = upperCase(decrypt+"")
 
     function encryption(plain, key){
         let index = 0;

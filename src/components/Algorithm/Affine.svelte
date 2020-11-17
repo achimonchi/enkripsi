@@ -1,5 +1,6 @@
 <script>
     export let algoActive = {};
+    import {upperCase, mod} from './../../helper/helper'
     
     let encrypt="";
     let decrypt="";
@@ -12,9 +13,6 @@
     function split(text){
         // console.log(text.split(""))
         return text.split("");
-    }
-    function mod(x){
-        return (x % 26 + 26) % 26
     }
 
     function getInvers(number){
@@ -37,14 +35,9 @@
     }
 
     $: cipher = handleEncrypt(encrypt, b, m);
-    $: encrypt = upperCase(encrypt+"")
-    $: decrypt = upperCase(decrypt+"")
-    $: plain = handleDecrypt(decrypt, b, m)
-    // $: handleDecrypt(decrypt);
-
-    const upperCase=(text)=>{
-        return text.toUpperCase();
-    }
+    $: encrypt = upperCase(encrypt+"");
+    $: decrypt = upperCase(decrypt+"");
+    $: plain = handleDecrypt(decrypt, b, m);
 
     const handleEncrypt=(encrypt,b ,m)=>{
         let cipher = "";

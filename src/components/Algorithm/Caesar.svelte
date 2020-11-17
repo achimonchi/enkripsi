@@ -8,20 +8,12 @@
         cipher="",
         plain="";
 
+    import {upperCase, mod} from './../../helper/helper'
+
     $: cipher = encryption(encrypt,shift);
     $: plain = decryption(decrypt, shift);
     $: encrypt = upperCase(encrypt);
     $: decrypt = upperCase(decrypt);
-    
-
-    function mod(number){
-        return (number%26 + 26)%26;
-    }
-
-    function upperCase(string=""){
-        // string = string.replace(/\d+/g,'')
-        return string.toUpperCase();
-    }
 
     function encryption(plainText="", shift){
         const arrPlain = plainText.split("");
