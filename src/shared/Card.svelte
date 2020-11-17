@@ -9,7 +9,7 @@
 
 
 <div on:click={()=>dispatch('algoChange', algo)} class="card" class:active={algoActive.name === algo.name}>
-    <h4>{algo.name}</h4>
+    <h4 class="algoName">{algo.name}</h4>
     <h4><i class="fas fa-check-circle" style="color:white"></i></h4>
 </div>
 
@@ -23,6 +23,7 @@
     h4{
         padding: 0;
         margin: 0;
+        align-self: center;
     }
     i{
         float: right;
@@ -40,5 +41,11 @@
 
     .card:hover{
         cursor:pointer;
+    }
+    
+    @media screen and (max-width: 600px) {
+        h4 {
+            font-size: 14pt;
+        }
     }
 </style>

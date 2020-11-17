@@ -26,7 +26,7 @@ import Caesar from './Algorithm/Caesar.svelte';
                     <h4 class="mb-3" style="font-weight:400">Pilih Algoritma Enkripsi</h4>
                     <div class="row">
                         {#each algorithms as algo}
-                            <div class="col-md mb-3">
+                            <div class="col-6 col-md-4 mb-3">
                                 <Card on:algoChange={algoChange} algoActive={algoActive} algo={algo}/>
                             </div>
                         {/each}
