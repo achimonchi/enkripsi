@@ -1,20 +1,33 @@
 <script>
     import Card from './../shared/Card.svelte';
     import Affine from './Algorithm/Affine.svelte';
-import Caesar from './Algorithm/Caesar.svelte';
+    import Caesar from './Algorithm/Caesar.svelte';
+import Gost from './Algorithm/Gost.svelte';
     import Vigenere from './Algorithm/Vigenere.svelte';
     
+    const typeAlgo = [
+        {name :"Traditional"},
+        {name :"Modern"},
+    ]
+
     const algorithms = [
-        {name : "Affine Cipher", url : "affine-cipher", component:Affine},
-        {name : "Vigenere Cipher", url : "vigenere-cipher", component:Vigenere},
-        {name : "Caesar Cipher", url : "caesar-cipher", component:Caesar},
+        {type:"Traditional",name : "Affine Cipher", url : "affine-cipher", component:Affine},
+        {type:"Traditional",name : "Vigenere Cipher", url : "vigenere-cipher", component:Vigenere},
+        {type:"Traditional",name : "Caesar Cipher", url : "caesar-cipher", component:Caesar},
+        {type:"Modern",name : "GOST", url : "caesar-cipher", component:Gost},
+        {type:"Modern",name : "DES", url : "caesar-cipher", component:Caesar},
         // {name : "Hill Cipher", url : "hill-cipher", component:Hill},
     ];
     let algoActive = {}
     // let algoActive = {name : "Caesar Cipher", url : "caesar-cipher", component:Caesar};
+    let typeActive = {};
     
     const algoChange=(e)=>{
         algoActive = e.detail
+    }
+
+    const typeChange = (e)=>{
+        typeActive=e.detail;
     }
 </script>
 
@@ -22,13 +35,28 @@ import Caesar from './Algorithm/Caesar.svelte';
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+                <h4 class="mb-3" style="font-weight:400">Pilih Type Algoritma</h4>
+                <div class="row">
+                    {#each typeAlgo as type}
+                        <div class="col-6 col-md-4 mb-3">
+                            <Card on:algoChange={typeChange} algoActive={typeActive} algo={type}/>
+                        </div>
+                    {/each}
+                </div>
+            </div>
+        </div>
+        {#if typeof typeActive.name !== "undefined"}
+        <div class="row">
+            <div class="col-md-12">
                 <div class="algo">
                     <h4 class="mb-3" style="font-weight:400">Pilih Algoritma Enkripsi</h4>
                     <div class="row">
                         {#each algorithms as algo}
-                            <div class="col-6 col-md-4 mb-3">
-                                <Card on:algoChange={algoChange} algoActive={algoActive} algo={algo}/>
-                            </div>
+                            {#if algo.type === typeActive.name}
+                                <div class="col-6 col-md-4 mb-3">
+                                    <Card on:algoChange={algoChange} algoActive={algoActive} algo={algo}/>
+                                </div>
+                            {/if}
                         {/each}
                     </div>
                 </div>
@@ -39,6 +67,7 @@ import Caesar from './Algorithm/Caesar.svelte';
                 </div>
             </div>
         </div>
+        {/if}
     </div>
 </section>
 
