@@ -2,6 +2,7 @@
     import Card from './../shared/Card.svelte';
     import Affine from './Algorithm/Affine.svelte';
     import Caesar from './Algorithm/Caesar.svelte';
+import Des from './Algorithm/DES.svelte';
 import Gost from './Algorithm/Gost.svelte';
     import Vigenere from './Algorithm/Vigenere.svelte';
     
@@ -15,11 +16,9 @@ import Gost from './Algorithm/Gost.svelte';
         {type:"Traditional",name : "Vigenere Cipher", url : "vigenere-cipher", component:Vigenere},
         {type:"Traditional",name : "Caesar Cipher", url : "caesar-cipher", component:Caesar},
         {type:"Modern",name : "GOST", url : "caesar-cipher", component:Gost},
-        {type:"Modern",name : "DES", url : "caesar-cipher", component:Caesar},
-        // {name : "Hill Cipher", url : "hill-cipher", component:Hill},
+        {type:"Modern",name : "DES", url : "caesar-cipher", component:Des},
     ];
     let algoActive = {}
-    // let algoActive = {name : "Caesar Cipher", url : "caesar-cipher", component:Caesar};
     let typeActive = {};
     
     const algoChange=(e)=>{
@@ -46,10 +45,10 @@ import Gost from './Algorithm/Gost.svelte';
             </div>
         </div>
         {#if typeof typeActive.name !== "undefined"}
-        <div class="row">
+        <div class="row mt-3">
             <div class="col-md-12">
                 <div class="algo">
-                    <h4 class="mb-3" style="font-weight:400">Pilih Algoritma Enkripsi</h4>
+                    <h4 class="mb-3" style="font-weight:400">Pilih Algoritma Enkripsi <b><i>{typeActive.name}</i></b></h4>
                     <div class="row">
                         {#each algorithms as algo}
                             {#if algo.type === typeActive.name}

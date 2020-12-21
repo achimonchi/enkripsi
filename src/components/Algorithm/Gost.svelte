@@ -1,18 +1,29 @@
 <script>
     let key = "";
     export let algoActive = {};
+    
+    import {generate8Group, generateBinary, generateKey} from './../../helper/algo/gost'
+
+    function genKey (key) {
+        const genK = generateKey(key);
+        const gen8 = generate8Group(genK);
+        const bin = generateBinary(gen8);
+        return bin.join("");
+    }
+    $: binary = genKey(key)
 </script>
 
 <div class="algoDetail mt-5 mb-5">
-    <h3>{algoActive.name}</h3>
+    <h3>{algoActive.name} <span style="font-size:15pt; opacity:.9;color:red; "><i>(Under Progress)</i> </span></h3>
     <h6>Masukkan Key</h6>
     <div class="row mb-3 mt-3">
         <div class="col-md-4">
             <input type="text" maxlength="32" placeholder="Panjang Key Maksimal 32 Karakter" class="form-control" bind:value={key}>
         </div>
-        <div class="col-md-4">
-            <h6>Key anda : {key}</h6>
+        <div class="col-md-8">
+            <h6>Key Anda : {key}</h6>
             <h6>Panjang Key Anda : {key.length}</h6>
+            <h6>Binary Key Anda : {binary}</h6>
         </div>
     </div>
     <div class="row mb-5">
@@ -22,12 +33,10 @@
         </div>
         <div class="col-md-6 mb-3">
             <h5 class="text-center">Plain Text</h5>
-            <h6 class="text-center">C = ( P*m + b )(mod 26)</h6>
             <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
         </div>
         <div class="col-md-6 mb-3">
             <h5 class="text-center">Cipher</h5>
-            <h6 class="text-center">Hasil Enkripsi</h6>
             <textarea readonly name="" id="" cols="30" rows="3" class="form-control"></textarea>
         </div>
     </div>
@@ -38,12 +47,10 @@
         </div>
         <div class="col-md-6 mb-3">
             <h5 class="text-center">Cipher Text</h5>
-            <h6 class="text-center">P = invers(m)*(C-b) (mod 26)</h6>
             <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
         </div>
         <div class="col-md-6 mb-3">
             <h5 class="text-center">Plain Text</h5>
-            <h6 class="text-center">Hasil Dekripsi</h6>
             <textarea readonly name="" id="" cols="30" rows="3" class="form-control"></textarea>
         </div>
     </div>
