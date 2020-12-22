@@ -46,7 +46,8 @@
 </script>
 
 <div class="algoDetail mt-5 mb-5">
-    <h3>{algoActive.name} <span style="font-size:15pt; opacity:.9;color:red; "><i>(Under Progress)</i> </span></h3>
+    <!-- <h3>{algoActive.name} <span style="font-size:15pt; opacity:.9;color:red; "><i>(Under Progress)</i> </span></h3> -->
+    <h3>{algoActive.name}
     <h6>Masukkan Key</h6>
     <div class="row mb-3 mt-3">
         <div class="col-md-4">

@@ -30,8 +30,8 @@ var ABC = {
 
 
 console.log("================= START =================")
-const key = "Algoritma_GOST_Taroni_Zebua_2017";
-const plain = "STMIK_BD";
+const key = "Belajar_GOST_Menantang_Banget^-^";
+const plain = "SeTeReSS";
 
 // generate key.
 // check if key less than 32, equal 32, or greather than 32.
@@ -397,9 +397,9 @@ const decryption=(reverseBinaryParam=[], key2binary=[])=>{
 }
 
 
-const cipher = "u, Òñõý";
-const cipherBinary = divPlainTo2Group(cipher);
+
+const cipherBinary = divPlainTo2Group(encrypt);
 const reverseCipherBinary = reverseBinary(cipherBinary);
 const decrypt = decryption(reverseCipherBinary, key2binary);
-console.log({decrypt})
+console.log({plain, key, encrypt, decrypt})
 

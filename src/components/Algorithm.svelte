@@ -16,10 +16,12 @@ import Gost from './Algorithm/Gost.svelte';
         {type:"Traditional",name : "Vigenere Cipher", url : "vigenere-cipher", component:Vigenere},
         {type:"Traditional",name : "Caesar Cipher", url : "caesar-cipher", component:Caesar},
         {type:"Modern",name : "GOST", url : "caesar-cipher", component:Gost},
-        {type:"Modern",name : "DES", url : "caesar-cipher", component:Des},
+        // {type:"Modern",name : "DES", url : "caesar-cipher", component:Des},  
     ];
-    let algoActive = {type:"Modern",name : "GOST", url : "caesar-cipher", component:Gost}
-    let typeActive = {name :"Modern"}
+    // let algoActive = {type:"Modern",name : "GOST", url : "caesar-cipher", component:Gost}
+    // let typeActive = {name :"Modern"}
+    let algoActive = {}
+    let typeActive = {}
     
     const algoChange=(e)=>{
         algoActive = e.detail
