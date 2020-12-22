@@ -57,7 +57,7 @@
             let plainBinary = divPlainTo2Group(plain);
             let reversePlainBinary = reverseBinary(plainBinary);
             let encrypt = encryption(reversePlainBinary, key2binary);
-            console.log(encrypt)
+            // console.log(encrypt)
             return encrypt;
         }
     }
@@ -98,8 +98,8 @@
             }
             let plainBinary = divPlainTo2Group(cipher);
             let reversePlainBinary = reverseBinary(plainBinary);
-            let encrypt = encryption(reversePlainBinary, key2binary);
-            console.log(encrypt)
+            let encrypt = decryption(reversePlainBinary, key2binary);
+            // console.log(encrypt)
             return encrypt;
         }
 

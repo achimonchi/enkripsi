@@ -91,12 +91,12 @@ export const divPlainTo2Group = (plain="") => {
             }
             
             stringCode += string +" ";
-            console.log({stringCode, arrPlain:arrPlain[count]})
+            // console.log({stringCode, arrPlain:arrPlain[count]})
             count++
         }
         temp[i] = stringCode.trim(" ");
     }
-    console.log({temp})
+    // console.log({temp})
     return temp;    
 
 }
@@ -170,9 +170,9 @@ export const changeToSBOX=(binary)=>{
             }
         }
         arrString[i] = str.join("");
-        console.log({binary : binary[i], decimal : parseInt(binary[i],2), sb})
+        // console.log({binary : binary[i], decimal : parseInt(binary[i],2), sb})
     })
-    console.log({stringDec, arrString, sb})
+    // console.log({stringDec, arrString, sb})
     return arrString;
 }
 
@@ -193,8 +193,8 @@ export const printValue = (arr=[])=>{
     let value = "";
     string.split(" ").map((s)=>{
         value += String.fromCharCode(parseInt(s, 2))
-        console.log({text :String.fromCodePoint(parseInt(s, 2)), decimal : parseInt(s, 2)})
-        // console.log() //01110101 00101100 0001
+        // console.log({text :String.fromCodePoint(parseInt(s, 2)), decimal : parseInt(s, 2)})
+        console.log() //01110101 00101100 0001
     })
     return value;
 }
@@ -206,11 +206,11 @@ export const encryption=(reverseBinaryParam=[], key2binary=[])=>{
     let rls = "";
     
     for(let i=0; i<32; i++){
-        console.log("PROCES KE "+i);
-        console.log("L"+i+" dan R"+i+" yang digunakan :")
-        console.log("=========================================")
-        console.log({r0: tempBinary[0], l0:tempBinary[1]})
-        console.log("=========================================")
+        // console.log("PROCES KE "+i);
+        // console.log("L"+i+" dan R"+i+" yang digunakan :")
+        // console.log("=========================================")
+        // console.log({r0: tempBinary[0], l0:tempBinary[1]})
+        // console.log("=========================================")
         let key, group, sbox;
         if(i>23){
             if(i%8===0){
@@ -218,13 +218,13 @@ export const encryption=(reverseBinaryParam=[], key2binary=[])=>{
             }
             let sum = parseInt(tempBinary[0].split(" ").join(""), 2) + parseInt(key2binary[index].split(" ").join(""),2);
             let modResult = mod(sum);
-            console.log(modResult.toString(2))
+            // console.log(modResult.toString(2))
             key = createBinary(modResult.toString(2))
             group = generate8Group(key);
             sbox = changeToSBOX(group);
             rls = processRLS(sbox);
-            console.log("================ PROCESS KE "+i+" INDEX KUNCI "+index+" ================")
-            console.log({sbox, group, rls, key:parseInt(key2binary[index].split(" ").join(""),2), r:parseInt(tempBinary[0].split(" ").join(""), 2)});
+            // console.log("================ PROCESS KE "+i+" INDEX KUNCI "+index+" ================")
+            // console.log({sbox, group, rls, key:parseInt(key2binary[index].split(" ").join(""),2), r:parseInt(tempBinary[0].split(" ").join(""), 2)});
             temp[i] = rls;
             index --;
         } else {
@@ -233,7 +233,7 @@ export const encryption=(reverseBinaryParam=[], key2binary=[])=>{
             }    
             let sum = parseInt(tempBinary[0].split(" ").join(""), 2) + parseInt(key2binary[index].split(" ").join(""),2);
             let modResult = mod(sum)
-            console.log(modResult.toString(2))
+            // console.log(modResult.toString(2))
             key = createBinary(modResult.toString(2))
             group = generate8Group(key);
             sbox = changeToSBOX(group);
@@ -252,14 +252,14 @@ export const encryption=(reverseBinaryParam=[], key2binary=[])=>{
         tempBinary[0] = newR;
         tempBinary[1] = tempAll;
         
-        console.log({sbox, group, rls, r:tempBinary[0], l:lTemp, newR, newTemp : tempBinary});    
+        // console.log({sbox, group, rls, r:tempBinary[0], l:lTemp, newR, newTemp : tempBinary});    
 
 
     }
 
     let output = splitArr(tempBinary);
     let reverse = reverseBinary(output)
-    console.log({output, reverse});
+    // console.log({output, reverse});
     let value = printValue(reverse);
     return value;
 }
@@ -271,11 +271,11 @@ export const decryption=(reverseBinaryParam=[], key2binary=[])=>{
     let rls = "";
     
     for(let i=0; i<32; i++){
-        console.log("PROCES KE "+i);
-        console.log("L"+i+" dan R"+i+" yang digunakan :")
-        console.log("=========================================")
-        console.log({r0: tempBinary[0], l0:tempBinary[1]})
-        console.log("=========================================")
+        // console.log("PROCES KE "+i);
+        // console.log("L"+i+" dan R"+i+" yang digunakan :")
+        // console.log("=========================================")
+        // console.log({r0: tempBinary[0], l0:tempBinary[1]})
+        // console.log("=========================================")
         let key, group, sbox;
         if(i>7){
             if(i%8===0){
@@ -283,13 +283,13 @@ export const decryption=(reverseBinaryParam=[], key2binary=[])=>{
             }
             let sum = parseInt(tempBinary[0].split(" ").join(""), 2) + parseInt(key2binary[index].split(" ").join(""),2);
             let modResult = mod(sum);
-            console.log(modResult.toString(2))
+            // console.log(modResult.toString(2))
             key = createBinary(modResult.toString(2))
             group = generate8Group(key);
             sbox = changeToSBOX(group);
             rls = processRLS(sbox);
-            console.log("================ PROCESS KE "+i+" INDEX KUNCI "+index+" ================")
-            console.log({sbox, group, rls, key:parseInt(key2binary[index].split(" ").join(""),2), r:parseInt(tempBinary[0].split(" ").join(""), 2)});
+            // console.log("================ PROCESS KE "+i+" INDEX KUNCI "+index+" ================")
+            // console.log({sbox, group, rls, key:parseInt(key2binary[index].split(" ").join(""),2), r:parseInt(tempBinary[0].split(" ").join(""), 2)});
             temp[i] = rls;
             index --;
         } else {
@@ -298,7 +298,7 @@ export const decryption=(reverseBinaryParam=[], key2binary=[])=>{
             }    
             let sum = parseInt(tempBinary[0].split(" ").join(""), 2) + parseInt(key2binary[index].split(" ").join(""),2);
             let modResult = mod(sum)
-            console.log(modResult.toString(2))
+            // console.log(modResult.toString(2))
             key = createBinary(modResult.toString(2))
             group = generate8Group(key);
             sbox = changeToSBOX(group);
@@ -317,14 +317,14 @@ export const decryption=(reverseBinaryParam=[], key2binary=[])=>{
         tempBinary[0] = newR;
         tempBinary[1] = tempAll;
         
-        console.log({sbox, group, rls, r:tempBinary[0], l:lTemp, newR, newTemp : tempBinary});    
+        // console.log({sbox, group, rls, r:tempBinary[0], l:lTemp, newR, newTemp : tempBinary});    
 
 
     }
 
     let output = splitArr(tempBinary);
     let reverse = reverseBinary(output)
-    console.log({output, reverse});
+    // console.log({output, reverse});
     let value = printValue(reverse);
     return value;
 }
