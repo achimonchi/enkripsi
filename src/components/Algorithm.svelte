@@ -18,8 +18,8 @@ import Gost from './Algorithm/Gost.svelte';
         {type:"Modern",name : "GOST", url : "caesar-cipher", component:Gost},
         {type:"Modern",name : "DES", url : "caesar-cipher", component:Des},
     ];
-    let algoActive = {}
-    let typeActive = {};
+    let algoActive = {type:"Modern",name : "GOST", url : "caesar-cipher", component:Gost}
+    let typeActive = {name :"Modern"}
     
     const algoChange=(e)=>{
         algoActive = e.detail
