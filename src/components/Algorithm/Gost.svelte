@@ -1,10 +1,11 @@
-<script>
+<script charset="utf-8">
     let key = "";
     let plain = "";
     let key2binary = "";
+    let cipherInput = "";
     export let algoActive = {};
     
-    import {divPlainTo2Group, encryption, generate8Group, generateBinary, generateKey, reverseBinary} from './../../helper/algo/gost'
+    import {decryption, divPlainTo2Group, encryption, generate8Group, generateBinary, generateKey, reverseBinary} from './../../helper/algo/gost'
 
     function genKey (key) {
         const genK = generateKey(key);
@@ -16,13 +17,27 @@
     $: binary = genKey(key)
     $: fixKey = generateKey(key)
     $: cipher = letsEncrypt(plain)
+    $: decrypt = letsDecrypt(cipherInput)
     
+
     function letsEncrypt(plain){
         if(plain.length === 8){
             let plainBinary = divPlainTo2Group(plain);
             let reversePlainBinary = reverseBinary(plainBinary);
             let encrypt = encryption(reversePlainBinary, key2binary);
             return encrypt;
+        } else {
+            let len = 8 - plain.length;
+            return len;
+        }
+    }
+
+    function letsDecrypt(cipher){
+        if(cipher.length === 8){
+            let plainBinary = divPlainTo2Group(cipher);
+            let reversePlainBinary = reverseBinary(plainBinary);
+            let decrypt = decryption(reversePlainBinary, key2binary);
+            return decrypt;
         } else {
             let len = 8 - plain.length;
             return len;
@@ -66,11 +81,11 @@
         </div>
         <div class="col-md-6 mb-3">
             <h5 class="text-center">Cipher Text</h5>
-            <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
+            <textarea bind:value={cipherInput} name="" id="" cols="30" rows="3" class="form-control"></textarea>
         </div>
         <div class="col-md-6 mb-3">
             <h5 class="text-center">Plain Text</h5>
-            <textarea readonly name="" id="" cols="30" rows="3" class="form-control"></textarea>
+            <textarea  readonly name="" id="" cols="30" rows="3" class="form-control">{decrypt}</textarea>
         </div>
     </div>
 </div>

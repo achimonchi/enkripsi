@@ -331,3 +331,75 @@ console.log({plain, plainBinary, reversePlainBinary, encrypt});
 
 // 3. proses dekripsi
 
+const decryption=(reverseBinaryParam=[], key2binary=[])=>{
+    let temp=[];
+    let tempBinary = [...reverseBinaryParam];
+    let index=0;
+    let rls = "";
+    
+    for(let i=0; i<32; i++){
+        console.log("PROCES KE "+i);
+        console.log("L"+i+" dan R"+i+" yang digunakan :")
+        console.log("=========================================")
+        console.log({r0: tempBinary[0], l0:tempBinary[1]})
+        console.log("=========================================")
+        let key, group, sbox;
+        if(i>7){
+            if(i%8===0){
+                index = 7;
+            }
+            let sum = parseInt(tempBinary[0].split(" ").join(""), 2) + parseInt(key2binary[index].split(" ").join(""),2);
+            let modResult = mod(sum);
+            console.log(modResult.toString(2))
+            key = createBinary(modResult.toString(2))
+            group = generate8Group(key);
+            sbox = changeToSBOX(group);
+            rls = processRLS(sbox);
+            console.log("================ PROCESS KE "+i+" INDEX KUNCI "+index+" ================")
+            console.log({sbox, group, rls, key:parseInt(key2binary[index].split(" ").join(""),2), r:parseInt(tempBinary[0].split(" ").join(""), 2)});
+            temp[i] = rls;
+            index --;
+        } else {
+            if(i%8 ===0){
+                index = 0;
+            }    
+            let sum = parseInt(tempBinary[0].split(" ").join(""), 2) + parseInt(key2binary[index].split(" ").join(""),2);
+            let modResult = mod(sum)
+            console.log(modResult.toString(2))
+            key = createBinary(modResult.toString(2))
+            group = generate8Group(key);
+            sbox = changeToSBOX(group);
+            rls = processRLS(sbox);
+            temp[i] = rls;
+            index++;
+        }
+
+        let lTemp = tempBinary[1].split(" ").join("");
+        let len = rls.length;
+        let newR = "";
+        for(let i=0; i<len; i++){
+            newR += xor(rls.slice(i,i+1), lTemp.slice(i,i+1) );
+        }
+        let tempAll = tempBinary[0].split(" ").join("");
+        tempBinary[0] = newR;
+        tempBinary[1] = tempAll;
+        
+        console.log({sbox, group, rls, r:tempBinary[0], l:lTemp, newR, newTemp : tempBinary});    
+
+
+    }
+
+    let output = splitArr(tempBinary);
+    let reverse = reverseBinary(output)
+    console.log({output, reverse});
+    let value = printValue(reverse);
+    return value;
+}
+
+
+const cipher = "u, Òñõý";
+const cipherBinary = divPlainTo2Group(cipher);
+const reverseCipherBinary = reverseBinary(cipherBinary);
+const decrypt = decryption(reverseCipherBinary, key2binary);
+console.log({decrypt})
+
