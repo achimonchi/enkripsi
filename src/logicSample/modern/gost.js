@@ -118,6 +118,7 @@ console.log({key, genKey, arrKey, key2binary})
 
 
 const divPlainTo2Group = (plain="") => {
+    
     const len = Math.ceil(plain.length / 2);
     const arrPlain = plain.split("");
     let temp = [];

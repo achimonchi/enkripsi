@@ -26,9 +26,39 @@
             let reversePlainBinary = reverseBinary(plainBinary);
             let encrypt = encryption(reversePlainBinary, key2binary);
             return encrypt;
-        } else {
+        }else if(plain.length > 8){
+            let group = Math.ceil(plain.length / 8);
+            let tempPlain = [];
+            for(let i=0; i<group; i++){
+                tempPlain[i] = plain.slice(i*8, (i*8)+8);
+                if(tempPlain[i].length < 8){
+                    let temp = tempPlain[i];
+                    let len = 8 - temp.length;
+                    for(let i=0; i<len; i++){
+                        temp += " "
+                    }
+                    tempPlain[i] = temp;
+                }
+            }
+            
+            let output = "";
+            tempPlain.map((plainText)=>{
+                let plainBinary = divPlainTo2Group(plainText);
+                let reversePlainBinary = reverseBinary(plainBinary);
+                let encrypt = encryption(reversePlainBinary, key2binary);
+                output += encrypt
+            })
+            return output;
+        }else {
             let len = 8 - plain.length;
-            return len;
+            for(let i=0; i<len; i++){
+                plain += " "
+            }
+            let plainBinary = divPlainTo2Group(plain);
+            let reversePlainBinary = reverseBinary(plainBinary);
+            let encrypt = encryption(reversePlainBinary, key2binary);
+            console.log(encrypt)
+            return encrypt;
         }
     }
 
@@ -36,12 +66,52 @@
         if(cipher.length === 8){
             let plainBinary = divPlainTo2Group(cipher);
             let reversePlainBinary = reverseBinary(plainBinary);
-            let decrypt = decryption(reversePlainBinary, key2binary);
-            return decrypt;
-        } else {
-            let len = 8 - plain.length;
-            return len;
+            let encrypt = encryption(reversePlainBinary, key2binary);
+            return encrypt;
+        }else if(cipher.length > 8){
+            let group = Math.ceil(cipher.length / 8);
+            let tempPlain = [];
+            for(let i=0; i<group; i++){
+                tempPlain[i] = cipher.slice(i*8, (i*8)+8);
+                if(tempPlain[i].length < 8){
+                    let temp = tempPlain[i];
+                    let len = 8 - temp.length;
+                    for(let i=0; i<len; i++){
+                        temp += " "
+                    }
+                    tempPlain[i] = temp;
+                }
+            }
+            
+            let output = "";
+            tempPlain.map((plainText)=>{
+                let plainBinary = divPlainTo2Group(plainText);
+                let reversePlainBinary = reverseBinary(plainBinary);
+                let encrypt = encryption(reversePlainBinary, key2binary);
+                output += encrypt
+            })
+            return output;
+        }else {
+            let len = 8 - cipher.length;
+            for(let i=0; i<len; i++){
+                cipher += " "
+            }
+            let plainBinary = divPlainTo2Group(cipher);
+            let reversePlainBinary = reverseBinary(plainBinary);
+            let encrypt = encryption(reversePlainBinary, key2binary);
+            console.log(encrypt)
+            return encrypt;
         }
+
+        // if(cipher.length === 8){
+        //     let plainBinary = divPlainTo2Group(cipher);
+        //     let reversePlainBinary = reverseBinary(plainBinary);
+        //     let decrypt = decryption(reversePlainBinary, key2binary);
+        //     return decrypt;
+        // } else {
+        //     let len = 8 - plain.length;
+        //     return len;
+        // }
     }
 </script>
 
@@ -66,7 +136,7 @@
         </div>
         <div class="col-md-6 mb-3">
             <h5 class="text-center">Plain Text </h5>
-            <h6 style="opacity:.8; color:red" class="text-center"><i>Hanya bisa 8 karakter</i> </h6>
+            <h6 class="text-center">Teks yang ingin di enkripsi</h6>
             <textarea name="" id="" cols="30" bind:value={plain} rows="3" class="form-control"></textarea>
         </div>
         <div class="col-md-6 mb-3">
