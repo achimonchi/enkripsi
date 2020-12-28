@@ -66,7 +66,7 @@
         if(cipher.length === 8){
             let plainBinary = divPlainTo2Group(cipher);
             let reversePlainBinary = reverseBinary(plainBinary);
-            let encrypt = encryption(reversePlainBinary, key2binary);
+            let encrypt = decryption(reversePlainBinary, key2binary);
             return encrypt;
         }else if(cipher.length > 8){
             let group = Math.ceil(cipher.length / 8);
@@ -87,7 +87,7 @@
             tempPlain.map((plainText)=>{
                 let plainBinary = divPlainTo2Group(plainText);
                 let reversePlainBinary = reverseBinary(plainBinary);
-                let encrypt = encryption(reversePlainBinary, key2binary);
+                let encrypt = decryption(reversePlainBinary, key2binary);
                 output += encrypt
             })
             return output;
