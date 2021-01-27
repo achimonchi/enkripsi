@@ -2,13 +2,14 @@
     import Card from './../shared/Card.svelte';
     import Affine from './Algorithm/Affine.svelte';
     import Caesar from './Algorithm/Caesar.svelte';
-import Des from './Algorithm/DES.svelte';
-import Gost from './Algorithm/Gost.svelte';
+    import Gost from './Algorithm/Gost.svelte';
     import Vigenere from './Algorithm/Vigenere.svelte';
+    import RSA from './Algorithm/RSA.svelte';
     
     const typeAlgo = [
         {name :"Traditional"},
         {name :"Modern"},
+        {name :"Kunci Publik"},
     ]
 
     const algorithms = [
@@ -16,6 +17,7 @@ import Gost from './Algorithm/Gost.svelte';
         {type:"Traditional",name : "Vigenere Cipher", url : "vigenere-cipher", component:Vigenere},
         {type:"Traditional",name : "Caesar Cipher", url : "caesar-cipher", component:Caesar},
         {type:"Modern",name : "GOST", url : "caesar-cipher", component:Gost},
+        {type:"Kunci Publik",name : "RSA", url : "rsa", component:RSA},  
         // {type:"Modern",name : "DES", url : "caesar-cipher", component:Des},  
     ];
     // let algoActive = {type:"Modern",name : "GOST", url : "caesar-cipher", component:Gost}
