@@ -7,35 +7,40 @@ const toutientN = (p-1)*(q-1);
 
 const arrRelatifPrima = getRelativePrime(toutientN);
 const e = arrRelatifPrima[18];
+const d = getD(e, toutientN);
 
-function getD(){
+console.log({e,d})
+
+function getD(e, toutientN){
     let i = 1;
     let flag = true;
     while(flag){
         if(mod(e*i, toutientN) === 1){
             console.log(i)
             flag = false;
+        }else {
+            i++;
+
         }
-        i++;
         // console.log(mod(21,20));
     }
-}
 
-getD();
+    return i;
+}
 
 
 function getRelativePrime(toutientN){
     let relativePrime = [];
     if(isPrime(toutientN)){
-        for(let i = 1; i<toutientN - 1; i++){
+        for(let i = 1; i<toutientN ; i++){
             relativePrime.push(i);
         }
     } else {
-        if(toutientN % 2 === 0 ){
-            for(let i = 1; i<toutientN; i++){
-                if(i == 1){
-                    relativePrime.push(i);
-                }else if(toutientN % i !== 0){
+        for(let i=1; i<toutientN; i++){
+            if( i === 1){
+                relativePrime.push(i);
+            } else {
+                if(toutientN % i !== 0){
                     const prime = generatePrime(i);
                     let temp = true;
                     for(let j = 0; j< prime.length; j++){
@@ -53,33 +58,9 @@ function getRelativePrime(toutientN){
                     }
                 }
             }
-        }
-        else {
-            for(let i=1; i<toutientN; i++){
-                if( i === 1){
-                    relativePrime.push(i);
-                } else {
-                    if(toutientN % i !== 0){
-                        const prime = generatePrime(i);
-                        let temp = true;
-                        for(let j = 0; j< prime.length; j++){
-                            if(i % prime[j] === 0){
-                                temp = false;
-                                break;
-                            }
-                        }
-                        if(temp === true){
-                            if(relativePrime.length < 20){
-                                relativePrime.push(i);
-                            } else {
-                                break;
-                            }
-                        }
-                    }
-                }
-                
-            };
-        }
+            
+        };
+        
     }
     return relativePrime;
 }
