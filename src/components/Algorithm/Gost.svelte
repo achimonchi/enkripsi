@@ -47,7 +47,7 @@
                 let reversePlainBinary = reverseBinary(plainBinary);
                 let encrypt = encryption(reversePlainBinary, key2binary);
                 output += encrypt
-            })
+            });
             return output;
         }else {
             let len = 8 - plain.length;
